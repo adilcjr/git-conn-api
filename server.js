@@ -16,5 +16,5 @@ var repositoryAPI = require("./repository.controller");
 
 app.use("/api/repositories", repositoryAPI);
 
-app.listen(8088);
-console.log("Backend server up and running on port 8088!");
+app.listen(8080);
+console.log("Backend server up and running on port 8080!");
