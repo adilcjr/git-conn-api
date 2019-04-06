@@ -9,11 +9,11 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/", (req, res) => {
-    connection.query("select * from repositories", (err, records) => {
+    connection.query("select * from repositories", (err, rows, fields) => {
         if (err) {
             console.error("Error fetching data");
         } else {
-            res.send(records);
+            res.send(rows);
         }
     });
 });

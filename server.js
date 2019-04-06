@@ -2,6 +2,7 @@ var express = require("express");
 var bodyparser = require("body-parser");
 
 var app = express();
+app.use(express.logger());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
 
@@ -15,6 +16,9 @@ app.use(function(req, res, next) {
 var repositoryAPI = require("./repository.controller");
 
 app.use("/api/repositories", repositoryAPI);
+// app.get('/*', function(req,res) {    
+//     res.sendFile(path.join(__dirname+'/dist/git-conn-app/index.html'));
+// });
 
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
 console.log("Backend server up and running on port 8080!");
