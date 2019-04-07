@@ -31,8 +31,9 @@ router.post("/", (req, res) => {
     var stargazers_count = req.body.stargazers_count;
     var watchers_count = req.body.watchers_count;
     var html_url = req.body.html_url;
+    var language = req.body.language;
     pool.query("insert into repositories (name, description , stargazers_count, watchers_count, html_url, language) " 
-        + " values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "')", 
+        + " values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "', '" + language + "')", 
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -50,9 +51,9 @@ router.put("/", (req, res) => {
     var stars = req.body.stargazers_count;
     var watchers = req.body.watchers_count;
     var html_url = req.body.html_url;
-    pool.query("update repositories set name='" + name + "', description='" 
-        + description + "', stars=" + stars + "', watchers=" + watchers + "', html_url=" + html_url + 
-        " where id=" + id, 
+    var language = req.body.language;
+    pool.query("update repositories set name='" + name + "', description='" + description + "', stargazers_count=" + stars 
+        + "', watchers_count=" + watchers + ", html_url='" + html_url + "', language='" + language + " where id=" + id, 
         (err, result) => {
             if (err) {
                 console.log(err);
