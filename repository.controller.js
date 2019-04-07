@@ -1,29 +1,25 @@
-var dbconn = require("./config/db_connection");
-
-var connection = dbconn.getConnection();
-
-connection.connect();
+var pool = require("./config/db_connection");
 
 var express = require("express");
 
 var router = express.Router();
 
 router.get("/", (req, res) => {
-    connection.query("select * from repositories", (err, rows, fields) => {
+    pool.query("select * from repositories", (err, result, fields) => {
         if (err) {
-            console.error("Error fetching data");
+            throw new Error(err);
         } else {
-            res.send(rows);
+            res.send(result);
         }
     });
 });
 
 router.get("/:id", (req, res) => {
-    connection.query("select * from repositories where id=" + req.params.id, (err, records, fields) => {
+    pool.query("select * from repositories where id=" + req.params.id, (err, result, fields) => {
         if (err) {
-            console.error("Error fetching data");
+            throw new Error(err);
         } else {
-            res.send(records);
+            res.send(result);
         }
     });
 });
@@ -31,15 +27,15 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
     var name = req.body.name;
     var description = req.body.description;
-    var stargazers_count = req.body.stargazers_count;
-    var watchers_count = req.body.watchers_count;
+    var stargazers_count = req.body.stars;
+    var watchers_count = req.body.watchers;
     var html_url = req.body.html_url;
-    connection.query("insert into repositories values('" + name + "', '" + description + "', " + stars + ", " + watchers + ", '" + html_url + "')", 
+    pool.query("insert into repositories values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "')", 
         (err, result) => {
             if (err) {
-                console.error("Error while inserting data" + err);
+                throw new Error(err);
             } else {
-                res.send({insert: "success"});
+                res.send(result);
             }
         }
     );
@@ -52,27 +48,29 @@ router.put("/", (req, res) => {
     var stars = req.body.stargazers_count;
     var watchers = req.body.watchers_count;
     var html_url = req.body.html_url;
-    connection.query("update repositories set name='" + name + "', description='" 
+    pool.query("update repositories set name='" + name + "', description='" 
         + description + "', stars=" + stars + "', watchers=" + watchers + "', html_url=" + html_url + 
         " where id=" + id, 
         (err, result) => {
             if (err) {
-                console.error("Error while inserting data" + err);
+                throw new Error(err);
             } else {
-                res.send({insert: "success"});
+                res.send(result);
             }
         }
     );
 });
 
 router.delete("/:id", (req, res) => {
-    connection.query("delete from product where id=" + req.params.id, (err, records, fields) => {
-        if (err) {
-            console.error("Error while deleting data");
-        } else {
-            res.send({delete: "Delete success"});
+    pool.query("delete from product where id=" + req.params.id, 
+        (err, result) => {
+            if (err) {
+                throw new Error(err);
+            } else {
+                res.send(result);
+            }
         }
-    });
+    );
 });
 
 
