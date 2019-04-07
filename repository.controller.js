@@ -27,8 +27,8 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
     var name = req.body.name;
     var description = req.body.description;
-    var stargazers_count = req.body.stars;
-    var watchers_count = req.body.watchers;
+    var stargazers_count = req.body.stargazers_count;
+    var watchers_count = req.body.watchers_count;
     var html_url = req.body.html_url;
     pool.query("insert into repositories values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "')", 
         (err, result) => {
@@ -62,7 +62,7 @@ router.put("/", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-    pool.query("delete from product where id=" + req.params.id, 
+    pool.query("delete from repositories where id=" + req.params.id, 
         (err, result) => {
             if (err) {
                 throw new Error(err);
