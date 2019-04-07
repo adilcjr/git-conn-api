@@ -26,9 +26,9 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
 
-    console.log(req);
-    console.log(req.body);
-    console.log(req.body.name);
+    // console.log(req);
+    // console.log(req.body);
+    // console.log(req.body.name);
     var name = req.body.name;
     var description = req.body.description;
     var stargazers_count = req.body.stargazers_count;
