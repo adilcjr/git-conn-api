@@ -7,7 +7,7 @@ var router = express.Router();
 router.get("/", (req, res) => {
     pool.query("select * from repositories", (err, result, fields) => {
         if (err) {
-            throw new Error(err);
+            console.log(err);
         } else {
             res.send(result);
         }
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
     pool.query("select * from repositories where id=" + req.params.id, (err, result, fields) => {
         if (err) {
-            throw new Error(err);
+            console.log(err);
         } else {
             res.send(result);
         }
@@ -26,9 +26,6 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
 
-    // console.log(req);
-    // console.log(req.body);
-    // console.log(req.body.name);
     var name = req.body.name;
     var description = req.body.description;
     var stargazers_count = req.body.stargazers_count;
@@ -38,7 +35,7 @@ router.post("/", (req, res) => {
         + " values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "')", 
         (err, result) => {
             if (err) {
-                throw new Error(err);
+                console.log(err);
             } else {
                 res.send(result);
             }
@@ -58,7 +55,7 @@ router.put("/", (req, res) => {
         " where id=" + id, 
         (err, result) => {
             if (err) {
-                throw new Error(err);
+                console.log(err);
             } else {
                 res.send(result);
             }
@@ -70,7 +67,7 @@ router.delete("/:id", (req, res) => {
     pool.query("delete from repositories where id=" + req.params.id, 
         (err, result) => {
             if (err) {
-                throw new Error(err);
+                console.log(err);
             } else {
                 res.send(result);
             }
