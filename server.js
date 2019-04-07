@@ -3,8 +3,8 @@ const path = require('path');
 var bodyparser = require("body-parser");
 
 var app = express();
-//app.use(bodyparser.json());
-//app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended:false}));
 
 app.use(function(req, res, next) {
     // res.header("Access-Control-Allow-Origin", "https://git-conn-app.herokuapp.com");
