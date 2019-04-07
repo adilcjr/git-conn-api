@@ -25,12 +25,17 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+
+    console.log(req);
+    console.log(req.body);
+    console.log(req.body.name);
     var name = req.body.name;
     var description = req.body.description;
     var stargazers_count = req.body.stargazers_count;
     var watchers_count = req.body.watchers_count;
     var html_url = req.body.html_url;
-    pool.query("insert into repositories values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "')", 
+    pool.query("insert into repositories (name, description , stargazers_count, watchers_count, html_url, language) " 
+        + " values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "')", 
         (err, result) => {
             if (err) {
                 throw new Error(err);
