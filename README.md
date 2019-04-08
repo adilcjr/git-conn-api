@@ -6,18 +6,17 @@ This code exposes a simple CRUD services to manage searched repositories from Gi
 
 ## Services Available
 
-- get Repositories - <server_url>/api/repositories
+- GET Repositories - <server_url>/api/repositories
 Returns a list of repositories.
 
-- get Repository - <server_url>/api/repositories/{id}
+- GET Repository - <server_url>/api/repositories/{id}
 Returns a repository by id.
 
-- post Repository - <server_url>/api/repositories/{id}
+- POST Repository - <server_url>/api/repositories/{id}
 Creates a new repository.
 
-- delete Repository - <server_url>/api/repositories/{id}
+- DELETE Repository - <server_url>/api/repositories/{id}
 Deletes a repository by id.
-
 
 API was built with **NodeJs** and **MySQL** Database. Some repositories information will be saved like:
 
@@ -27,4 +26,4 @@ API was built with **NodeJs** and **MySQL** Database. Some repositories informat
  - Watchers;
  - Link;
  - Main language.
-
+ 
