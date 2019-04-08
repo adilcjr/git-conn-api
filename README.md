@@ -1,9 +1,30 @@
 # git-conn-api
 ## Git Connector API
 
-An API to manage Git Repositories from git-conn-app.
-This code exposes a simple CRUD API to manage searched repositories from GitHub.
+A REST API to manage Git Repositories for git-conn-app.
+This code exposes a simple CRUD services to manage searched repositories from GitHub.
 
-API was built with NodeJs and MySQL Database. Some repositories information will be saved like:
+## Services Available
 
-Repository name, description, stars, watchers, link and main language.
+- get Repositories - <server_url>/api/repositories
+Returns a list of repositories.
+
+- get Repository - <server_url>/api/repositories/{id}
+Returns a repository by id.
+
+- post Repository - <server_url>/api/repositories/{id}
+Creates a new repository.
+
+- delete Repository - <server_url>/api/repositories/{id}
+Deletes a repository by id.
+
+
+API was built with **NodeJs** and **MySQL** Database. Some repositories information will be saved like:
+
+ - Name;
+ - Description;
+ - Stars;
+ - Watchers;
+ - Link;
+ - Main language.
+
