@@ -7,7 +7,7 @@ var router = express.Router();
 router.get("/", (req, res) => {
     pool.query("select * from repositories", (err, result, fields) => {
         if (err) {
-            console.log(err);
+            console.error(err);
         } else {
             res.send(result);
         }
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
     pool.query("select * from repositories where id=" + req.params.id, (err, result, fields) => {
         if (err) {
-            console.log(err);
+            console.error(err);
         } else {
             res.send(result);
         }
@@ -36,7 +36,7 @@ router.post("/", (req, res) => {
         + " values('" + name + "', '" + description + "', " + stargazers_count + ", " + watchers_count + ", '" + html_url + "', '" + language + "')", 
         (err, result) => {
             if (err) {
-                console.log(err);
+                console.error(err);
             } else {
                 res.send(result);
             }
@@ -56,7 +56,7 @@ router.put("/", (req, res) => {
         + "', watchers_count=" + watchers + ", html_url='" + html_url + "', language='" + language + " where id=" + id, 
         (err, result) => {
             if (err) {
-                console.log(err);
+                console.error(err);
             } else {
                 res.send(result);
             }
@@ -68,7 +68,7 @@ router.delete("/:id", (req, res) => {
     pool.query("delete from repositories where id=" + req.params.id, 
         (err, result) => {
             if (err) {
-                console.log(err);
+                console.error(err);
             } else {
                 res.send(result);
             }
