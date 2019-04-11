@@ -1,7 +1,7 @@
+[![Build Status](https://semaphoreci.com/api/v1/adilcjr/git-conn-api/branches/master/badge.svg)](https://semaphoreci.com/adilcjr/git-conn-api)
+
 # git-conn-api
 ## Git Connector API
-
-[![Build Status](https://semaphoreci.com/api/v1/adilcjr/git-conn-api/branches/master/badge.svg)](https://semaphoreci.com/adilcjr/git-conn-api)
 
 A REST API to manage Git repositories for [git-conn-app](https://github.com/adilcjr/git-conn-app).
 This application exposes a simple CRUD services to manage searched repositories from GitHub.
